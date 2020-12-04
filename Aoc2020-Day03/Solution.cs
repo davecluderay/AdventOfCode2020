@@ -19,7 +19,8 @@ namespace Aoc2020_Day03
         }
 
         private long Calculate(params (int right, int down)[] routes)
-            => Calculate(routes, null); 
+            => Calculate(routes, null);
+
         private long Calculate((int right, int down)[] routes, string fileName)
         {
             var lines = InputFile.ReadAllLines(fileName);
