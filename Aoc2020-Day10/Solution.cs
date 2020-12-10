@@ -26,33 +26,20 @@ namespace Aoc2020_Day10
         {
             var joltages = LoadJoltages();
 
-            var solutionCountsByPosition = new Dictionary<int, long>();
+            var solutionCounts = new long[joltages.Length];
+            solutionCounts[^1] = 1; 
             long CountSolutionsFrom(int position)
             {
-                // If this position was already evaluated, return the cached result.
-                if (solutionCountsByPosition.ContainsKey(position)) return solutionCountsByPosition[position];
+                // If the solution count from this position is known, return it.
+                if (solutionCounts[position] != 0) return solutionCounts[position];
 
-                long count = 0;
+                // Compute the solution count from this position recursively.
+                var next = position + 1;
+                while (next < joltages.Length && joltages[next] - joltages[position] < 4)
+                    solutionCounts[position] += CountSolutionsFrom(next++);
 
-                if (position == joltages.Length - 1)
-                {
-                    // It is the last position in the sequence,
-                    // so there is only the one solution from here.
-                    count = 1; 
-                }
-                else
-                {
-                    // There are potentially several next position choices from here,
-                    // so evaluate each one recursively.
-                    var next = position + 1;
-                    while (next < joltages.Length && joltages[next] - joltages[position] < 4)
-                        count += CountSolutionsFrom(next++);
-                }
-
-                // Cache and return the number of available solutions
-                // from this position in the sequence.
-                solutionCountsByPosition[position] = count;
-                return count;
+                // Return it.
+                return solutionCounts[position];
             }
 
             return CountSolutionsFrom(0);
