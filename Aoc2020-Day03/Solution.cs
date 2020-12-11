@@ -4,12 +4,12 @@ namespace Aoc2020_Day03
     {
         public string Title => "Day 3: Toboggan Trajectory";
 
-        public object PartOne()
+        public object? PartOne()
         {
             return Calculate((right: 3, down: 1));
         }
         
-        public object PartTwo()
+        public object? PartTwo()
         {
             return Calculate((right: 1, down: 1),
                              (right: 3, down: 1),
@@ -21,7 +21,7 @@ namespace Aoc2020_Day03
         private long Calculate(params (int right, int down)[] routes)
             => Calculate(routes, null);
 
-        private long Calculate((int right, int down)[] routes, string fileName)
+        private long Calculate((int right, int down)[] routes, string? fileName)
         {
             var lines = InputFile.ReadAllLines(fileName);
             long product = 1;

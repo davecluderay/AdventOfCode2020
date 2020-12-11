@@ -8,13 +8,13 @@ namespace Aoc2020_Day08
     {
         public string Title => "Day 8: Handheld Halting";
 
-        public object PartOne()
+        public object? PartOne()
         {
             var program = ReadProgram();
             return ExecuteProgram(program).acc;
         }
         
-        public object PartTwo()
+        public object? PartTwo()
         {
             var program = ReadProgram();
 
@@ -47,7 +47,7 @@ namespace Aoc2020_Day08
             return null;
         }
 
-        private Instruction[] ReadProgram(string fileName = null)
+        private Instruction[] ReadProgram(string? fileName = null)
             => InputFile.ReadAllLines(fileName)
                         .Select(Instruction.Parse)
                         .ToArray();
@@ -88,7 +88,8 @@ namespace Aoc2020_Day08
             var parts = input.Split(' ', 2);
             return new Instruction { Code = parts[0], Argument = Convert.ToInt32(parts[1]) };
         }
-        public string Code { get; set; }
+
+        public string Code { get; set; } = "";
         public int Argument { get; set; }
     }
 }

@@ -6,13 +6,13 @@ namespace Aoc2020_Day05
     {
         public string Title => "Day 5: Binary Boarding";
 
-        public object PartOne()
+        public object? PartOne()
         {
             return InputFile.ReadAllLines()
                             .Max(DecodeBoardingPass);
         }
 
-        public object PartTwo()
+        public object? PartTwo()
         {
             var seatNumbers = InputFile.ReadAllLines()
                                        .Select(DecodeBoardingPass)

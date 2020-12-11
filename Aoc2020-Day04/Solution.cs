@@ -8,17 +8,17 @@ namespace Aoc2020_Day04
     {
         public string Title => "Day 4: Passport Processing";
 
-        public object PartOne()
+        public object? PartOne()
         {
             return ReadPassports().Count(p => IsValidPassport(p, false));
         }
 
-        public object PartTwo()
+        public object? PartTwo()
         {
             return ReadPassports().Count(p => IsValidPassport(p, true));
         }
 
-        private static (string key, string val)[][] ReadPassports(string fileName = null)
+        private static (string key, string val)[][] ReadPassports(string? fileName = null)
             => Regex.Split(InputFile.ReadAllText(fileName), @"\r?\n\r?\n", RegexOptions.Multiline)
                     .Select(ParsePassport).ToArray();
 

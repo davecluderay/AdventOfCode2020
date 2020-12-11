@@ -8,7 +8,7 @@ namespace Aoc2020_Day06
     {
         public string Title => "Day 6: Custom Customs";
 
-        public object PartOne()
+        public object? PartOne()
         {
             return ReadGroups().Select(g => g.SelectMany(s => s.ToCharArray())
                                              .Distinct()
@@ -16,14 +16,14 @@ namespace Aoc2020_Day06
                                .Sum();
         }
         
-        public object PartTwo()
+        public object? PartTwo()
         {
             var questions = Enumerable.Range('a', 26).Select(n => (char)n).ToArray();
             return ReadGroups().Select(g => questions.Count(c => g.All(l => l.Contains(c))))
                                .Sum();
         }
 
-        private static IEnumerable<string[]> ReadGroups(string fileName = null)
+        private static IEnumerable<string[]> ReadGroups(string? fileName = null)
         {
             var groups = Regex.Split(InputFile.ReadAllText(fileName).Trim(),
                                      @"\r?\n\r?\n",

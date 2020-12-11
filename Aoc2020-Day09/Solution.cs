@@ -10,7 +10,7 @@ namespace Aoc2020_Day09
         
         public string Title => "Day 9: Encoding Error";
 
-        public object PartOne()
+        public object? PartOne()
         {
             var sequence = ReadSequence();
             
@@ -29,11 +29,11 @@ namespace Aoc2020_Day09
             return null;
         }
 
-        public object PartTwo()
+        public object? PartTwo()
         {
             var sequence = ReadSequence();
 
-            var target = (long) PartOne();
+            var target = Convert.ToInt64(PartOne());
 
             for (int skip = 0; skip < sequence.Length - 1; skip++)
             for (var take = 2; take < sequence.Length - skip; take++)
@@ -48,7 +48,7 @@ namespace Aoc2020_Day09
             return null;
         }
 
-        private static long[] ReadSequence(string fileName = null)
+        private static long[] ReadSequence(string? fileName = null)
             => InputFile.ReadAllLines(fileName)
                 .Select(s => Convert.ToInt64(s))
                 .ToArray();

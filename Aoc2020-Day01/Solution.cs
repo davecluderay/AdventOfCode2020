@@ -9,7 +9,7 @@ namespace Aoc2020_Day01
 
         public string Title => "Day 1: Report Repair";
 
-        public object PartOne()
+        public object? PartOne()
         {
             var entries = ReadEntries();
 
@@ -25,7 +25,7 @@ namespace Aoc2020_Day01
             return null;
         }
 
-        public object PartTwo()
+        public object? PartTwo()
         {
             var entries = ReadEntries();
 
@@ -42,7 +42,7 @@ namespace Aoc2020_Day01
             return null;
         }
 
-        private int[] ReadEntries(string fileName = null) =>
+        private int[] ReadEntries(string? fileName = null) =>
             InputFile.ReadAllLines(fileName)
                 .Select(l => Convert.ToInt32(l))
                 .OrderBy(n => n)

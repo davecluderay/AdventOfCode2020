@@ -8,7 +8,7 @@ namespace Aoc2020_Day10
     {
         public string Title => "Day 10: Adapter Array";
 
-        public object PartOne()
+        public object? PartOne()
         {
             var joltages = LoadJoltages();
 
@@ -22,7 +22,7 @@ namespace Aoc2020_Day10
             return diffs.Count(d => d == 1) * diffs.Count(d => d == 3);
         }
         
-        public object PartTwo()
+        public object? PartTwo()
         {
             var joltages = LoadJoltages();
 
@@ -45,7 +45,7 @@ namespace Aoc2020_Day10
             return CountSolutionsFrom(0);
         }
 
-        private int[] LoadJoltages(string fileName = null)
+        private int[] LoadJoltages(string? fileName = null)
         {
             var joltages = new List<int>();
             joltages.Add(0);

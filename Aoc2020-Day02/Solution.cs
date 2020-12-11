@@ -8,7 +8,7 @@ namespace Aoc2020_Day02
     {
         public string Title => "Day 2: Password Philosophy";
 
-        public object PartOne()
+        public object? PartOne()
         {
             var matches = ReadPasswords();
             var validPasswords =
@@ -19,7 +19,7 @@ namespace Aoc2020_Day02
             return validPasswords.Count();
         }
 
-        public object PartTwo()
+        public object? PartTwo()
         {
             var matches = ReadPasswords();
             var validPasswords =
@@ -31,7 +31,7 @@ namespace Aoc2020_Day02
             return validPasswords.Count();
         }
 
-        private static (int low, int high, char @char, string password)[] ReadPasswords(string fileName = null)
+        private static (int low, int high, char @char, string password)[] ReadPasswords(string? fileName = null)
         {
             var pattern = new Regex("^(?<low>\\d+)-(?<high>\\d+)\\s+(?<char>.):\\s+(?<password>.*)$", RegexOptions.Compiled);
 

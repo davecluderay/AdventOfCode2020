@@ -9,7 +9,7 @@ namespace Aoc2020_Day07
     {
         public string Title => "Day 7: Handy Haversacks";
 
-        public object PartOne()
+        public object? PartOne()
         {
             var rulesByChildColour = ReadRules().ToLookup(r => r.ChildColour, r => r);
 
@@ -30,7 +30,7 @@ namespace Aoc2020_Day07
             return possibleParentColours.Count;
         }
         
-        public object PartTwo()
+        public object? PartTwo()
         {
             var rulesByParentColour = ReadRules().ToLookup(r => r.ParentColour, r => r);
 
@@ -51,7 +51,7 @@ namespace Aoc2020_Day07
             return total - 1;
         }
 
-        private static (string ParentColour, string ChildColour, int ChildQuantity)[] ReadRules(string fileName = null)
+        private static (string ParentColour, string ChildColour, int ChildQuantity)[] ReadRules(string? fileName = null)
         {
             var pattern = new Regex(@"((?<quantity>\d+)\s+)?(?<colour>(\S+)(\s\S+)?) bags?", RegexOptions.Compiled);
 
