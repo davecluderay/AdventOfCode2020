@@ -16,31 +16,17 @@ namespace Aoc2020_Day12
 
             foreach (var (code, value) in instructions)
             {
-                switch (code)
+                (position, orientation) = code switch
                 {
-                    case 'N':
-                        position = (position.east, position.north + value);
-                        break;
-                    case 'S':
-                        position = (position.east, position.north - value);
-                        break;
-                    case 'E':
-                        position = (position.east + value, position.north);
-                        break;
-                    case 'W':
-                        position = (position.east - value, position.north);
-                        break;
-                    case 'L':
-                        orientation = RotateLeft(orientation, value);
-                        break; 
-                    case 'R': 
-                        orientation = RotateRight(orientation, value);
-                        break; 
-                    case 'F':
-                        position = (position.east + value * orientation.east,
-                                    position.north + value * orientation.north);
-                        break;
-                }
+                    'N' => ((position.east, position.north + value), orientation),
+                    'S' => ((position.east, position.north - value), orientation),
+                    'E' => ((position.east + value, position.north), orientation),
+                    'W' => ((position.east - value, position.north), orientation),
+                    'L' => (position, RotateLeft(orientation, value)),
+                    'R' => (position, RotateRight(orientation, value)),
+                    'F' => ((position.east + value * orientation.east, position.north + value * orientation.north), orientation),
+                    _ => throw new NotSupportedException()
+                };
             }
             
             return Math.Abs(position.east) + Math.Abs(position.north);
@@ -52,35 +38,22 @@ namespace Aoc2020_Day12
 
             var waypoint = (east: 10, north: 1);
             var position = (east: 0, north: 0);
+            
             foreach (var (code, value) in instructions)
             {
-                switch (code)
+                (position, waypoint) = code switch
                 {
-                    case 'N':
-                        waypoint = (waypoint.east, waypoint.north + value);
-                        break;
-                    case 'S':
-                        waypoint = (waypoint.east, waypoint.north - value);
-                        break;
-                    case 'E':
-                        waypoint = (waypoint.east + value, waypoint.north);
-                        break;
-                    case 'W':
-                        waypoint = (waypoint.east - value, waypoint.north);
-                        break;
-                    case 'L':
-                        waypoint = RotateLeft(waypoint, value);
-                        break; 
-                    case 'R': 
-                        waypoint = RotateRight(waypoint, value);
-                        break; 
-                    case 'F':
-                        position = (position.east + waypoint.east * value,
-                                    position.north + waypoint.north * value);
-                        break;
-                }
+                    'N' => (position, (waypoint.east, waypoint.north + value)),
+                    'S' => (position, (waypoint.east, waypoint.north - value)),
+                    'E' => (position, (waypoint.east + value, waypoint.north)),
+                    'W' => (position, (waypoint.east - value, waypoint.north)),
+                    'L' => (position, RotateLeft(waypoint, value)),
+                    'R' => (position, RotateRight(waypoint, value)),
+                    'F' => ((position.east + value * waypoint.east, position.north + value * waypoint.north), waypoint),
+                    _ => throw new NotSupportedException()
+                };
             }
-            
+
             return Math.Abs(position.east) + Math.Abs(position.north);
         }
 
