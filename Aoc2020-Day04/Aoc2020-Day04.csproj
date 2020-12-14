@@ -6,6 +6,7 @@
     <RootNamespace>Aoc2020_Day04</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
 
   <ItemGroup>
