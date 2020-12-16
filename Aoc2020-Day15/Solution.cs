@@ -15,8 +15,6 @@ namespace Aoc2020_Day15
 
         public object PartTwo()
         {
-            // TODO: Calculating this many values takes maybe 10 seconds.
-            // Is it possible to derive a formula for the value at position n?
             return Solve(30000000L);
         }
 
