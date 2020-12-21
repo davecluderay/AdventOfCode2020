@@ -37,19 +37,20 @@ namespace Aoc2020_Day19
             if (rule is CompositeMessageValidationRule compositeRule)
             {
                 var allValidChildResults = new List<ValidateResult>();
+
                 foreach (var ruleSet in compositeRule.ChildRuleSets)
                 {
-                    var resultsByChildIndex = Enumerable.Range(0, ruleSet.Count).ToDictionary(i => i, i => new List<ValidateResult>());
-                    for (var i = 0; i < ruleSet.Count; i++)
+                    var previous = new List<ValidateResult> { new ValidateResult(true, 0) };
+                    foreach (var childRule in ruleSet)
                     {
-                        var childRule = ruleSet[i];
-                        var previousChildResults = i > 0 ? resultsByChildIndex[i - 1] : new List<ValidateResult> { new ValidateResult(true, 0) };
-                        resultsByChildIndex[i].AddRange(previousChildResults.SelectMany(cr => Validate(childRule, message, position + cr.Consumed)
-                                                                      .Where(r => r.IsValid)
-                                                                      .Select(r => new ValidateResult(true, r.Consumed + cr.Consumed))));
+                        previous = previous.SelectMany(
+                                               p => Validate(childRule, message, position + p.Consumed)
+                                                    .Where(r => r.IsValid)
+                                                    .Select(r => new ValidateResult(true, r.Consumed + p.Consumed)))
+                                           .ToList();
                     }
 
-                    allValidChildResults.AddRange(resultsByChildIndex[ruleSet.Count - 1]);
+                    allValidChildResults.AddRange(previous);
                 }
 
                 return allValidChildResults.ToArray();
